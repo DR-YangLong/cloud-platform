@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="site.yanglong.cloud.oauth2.server.mapper.OauthClientDetailsMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="site.yanglong.cloud.oauth2.server.model.OauthClientDetails">
+        <id column="id" property="id" />
+        <result column="clientId" property="clientId" />
+        <result column="clientSecret" property="clientSecret" />
+        <result column="scope" property="scope" />
+        <result column="resourceIds" property="resourceIds" />
+        <result column="authorizedGrantTypes" property="authorizedGrantTypes" />
+        <result column="webServerRedirectUri" property="webServerRedirectUri" />
+        <result column="authorities" property="authorities" />
+        <result column="accessTokenValidity" property="accessTokenValidity" />
+        <result column="refreshTokenValidity" property="refreshTokenValidity" />
+        <result column="additionalInformation" property="additionalInformation" />
+        <result column="autoapprove" property="autoapprove" />
+        <result column="enabled" property="enabled" />
+    </resultMap>
+
+</mapper>

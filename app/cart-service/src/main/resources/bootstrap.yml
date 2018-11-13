@@ -1,0 +1,28 @@
+server:
+  port: 8001
+spring:
+  application:
+    name: cart-service
+  cloud:
+    inetutils:
+      ignored-interfaces:
+          - Dell.*
+          - VMware.*
+          - vEth.*
+          - Hyper.*
+    config:
+      discovery:
+        enabled: true
+        service-id: config-server
+      username: ${config-security.username:what}
+      password: ${config-security.password:what}
+eureka:
+  instance:
+    prefer-ip-address: true
+    metadata-map:
+      version: 1.0
+      user.name: ${monitor-security.username:any}
+      user.password: ${monitor-security.password:any}
+  client:
+    service-url:
+      defaultZone: http://${registry-security.username:test}:${registry-security.password:123456}@127.0.0.1:7001/eureka,http://${registry-security.username:test}:${registry-security.password:123456}@127.0.0.1:7002/eureka,http://${registry-security.username:test}:${registry-security.password:123456}@127.0.0.1:7003/eureka

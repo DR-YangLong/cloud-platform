@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="site.yanglong.cloud.oauth2.server.mapper.UserRoleMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="site.yanglong.cloud.oauth2.server.model.UserRole">
+        <id column="id" property="id" />
+        <result column="userId" property="userId" />
+        <result column="roleId" property="roleId" />
+        <result column="enabled" property="enabled" />
+    </resultMap>
+
+    <resultMap id="UserAndRoleResultMap" extends="site.yanglong.cloud.oauth2.server.mapper.UserBaseMapper.BaseResultMap" type="site.yanglong.cloud.oauth2.server.model.UserAndRole">
+        <collection property="userRole" ofType="site.yanglong.cloud.oauth2.server.model.RoleInfo">
+            <id column="roleId" property="roleId" />
+            <result column="roleName" property="roleName" />
+            <result column="roleRemark" property="roleRemark" />
+            <result column="enabled" property="enabled" />
+        </collection>
+    </resultMap>
+
+    <sql id="selectSQL">
+        u.userId,u.userMobile,u.userPwd,u.userName,u.userEmail,
+        u.userGender,u.userStatus,u.createTime,u.modifyTime,u.loginTime,
+        r.roleId,r.roleName,r.roleRemark,r.enabled
+    </sql>
+
+    <select id="selectUserWithinRole" resultMap="UserAndRoleResultMap">
+        select
+        <include refid="selectSQL"/>
+        FROM user_base u,user_role ur,role_info r
+        WHERE
+        u.userMobile = #{account}
+        AND
+        u.userId=ur.userId
+        AND
+        r.roleId=ur.roleId
+        AND
+        ur.enabled='0'
+
+        union
+
+        select
+        <include refid="selectSQL"/>
+        FROM user_base u,user_role ur,role_info r
+        WHERE
+        u.userEmail = #{account}
+        AND
+        u.userId=ur.userId
+        AND
+        r.roleId=ur.roleId
+        AND
+        ur.enabled='0'
+    </select>
+</mapper>
