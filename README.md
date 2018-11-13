@@ -12,7 +12,7 @@
 * app项目为业务微服务项目总目录，业务微服务项目均在此目录下。
 
 ### 架构
-![架构图](architecture.bmp)
+![架构图](architecture.png)
 
 ### 项目间依赖
 eureka server为独立服务，不依赖其他服务；config server仅依赖eureka server服务。
