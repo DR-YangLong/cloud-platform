@@ -33,7 +33,7 @@
         <maven.compiler.target>1.8</maven.compiler.target>
         <mybatis.plus.version>3.0-gamma</mybatis.plus.version>
         <swagger.version>2.9.2</swagger.version>
-        <fastxml.version>2.9.4</fastxml.version>
+        <fastxml.version>2.9.7</fastxml.version>
         <xstream.version>1.4.10</xstream.version>
         <fastjson.version>1.2.49</fastjson.version>
         <mysql.version>6.0.6</mysql.version>
